@@ -1,7 +1,7 @@
 package jpabook.jpashop;
 
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.Book;
+import jpabook.jpashop.domain.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,8 +19,21 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("James S");
+
+            Movie movie = new Movie();
+            movie.setName("Top Gun");
+            movie.setActor("Tom C");
+
+            Book book2 = new Book();
+            book2.setName("JPA2");
+            book2.setAuthor("Tom S");
+
+            em.persist(book);
+            em.persist(movie);
+            em.persist(book2);
 
             tx.commit();
         } catch (Exception e) {
